@@ -293,3 +293,172 @@ public class Fachada {
 }
 
 //LISTADO
+
+package logica;
+
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class Listado /*extends Principal*/ {
+
+    private static ArrayList<Tarea> tareaList = new ArrayList();
+    private static ArrayList<Tarea> tareaRealizadas = new ArrayList();
+
+    public void AgregarTarea(Tarea T) {
+        tareaList.add(T);// A;ade el objeto al array
+    }
+
+    public void EliminarTarea(int i) {
+        // Elimina la tarea asignada
+        tareaList.remove(i);
+    }
+
+    public void editarTarea(Tarea N, int indice) {
+        tareaList.get(indice);//se obtiene la posicion
+        tareaList.set(indice, N);
+    }
+
+    public void TareasRealizadas(int R) {
+        //Se envian al array llamado tareasRealizadas y se eliminan de pendientes
+        Tarea z = tareaList.get(R); //Objeto para pedir el indice
+        tareaRealizadas.add(z);
+        tareaList.remove(R);//se elimina de tareas pendientes al pedir el indice
+
+    }
+
+    public void listaC(JTable tblTabla) { //Tabla de lista pendientes
+        String col[] = {"Nombre", "Prioridad"}; //columnas
+        DefaultTableModel modelo = new DefaultTableModel(col, 0);//Diseño de tabla
+        //
+        for (int i = 0; i < tareaList.size(); i++) {//recorre array de tareas pendientes
+            String Nombre = Listado.tareaList.get(i).getNombre();//Obtiene el indice y el nombre
+            String Prioridad = String.valueOf(Listado.tareaList.get(i).getPrioridad());// Se obtiene el valor del comboBox
+
+            String carga[] = {Nombre, Prioridad};//Carga el nombre y prioridad en las columnas
+            modelo.addRow(carga);  //Objeto modelo que añade las filas
+        }
+        tblTabla.setModel(modelo);//Aplica el modelo anteriormente creado
+
+    }
+
+    //Misma forma pero diferente tabla para otro array de realizados
+    public void listaR(JTable tblTabla) {
+        String col[] = {"Nombre", "Prioridad"};
+        DefaultTableModel modelo = new DefaultTableModel(col, 0);
+        //
+        for (int i = 0; i < tareaRealizadas.size(); i++) {
+            String Nombre = Listado.tareaRealizadas.get(i).getNombre();
+            String Prioridad = String.valueOf(Listado.tareaRealizadas.get(i).getPrioridad());
+
+            String carga[] = {Nombre, Prioridad};
+            modelo.addRow(carga);
+        }
+        tblTabla.setModel(modelo);
+
+    }
+}
+
+//REALIZADOS
+/*
+ */
+package grafica;
+
+import Fachada.Fachada;
+
+/**
+ *
+ * @author agustin
+ */
+public class Realizados extends javax.swing.JFrame {
+    
+    Fachada f = Fachada.getInstancia();
+    /**
+     * Creates new form Realizados
+     */
+    public Realizados() {
+        initComponents();
+        f.listPend.listaR(jTableRealizados);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableRealizados = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonSalir = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+
+        jTableRealizados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Nombre", "Prioridad"
+            }
+        ));
+        jScrollPane1.setViewportView(jTableRealizados);
+
+        jLabel1.setText("Tareas ya realizadas");
+
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(140, 140, 140))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        dispose();
+    }                                            
+
+
+       
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableRealizados;
+    // End of variables declaration                   
+}
