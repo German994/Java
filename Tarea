@@ -1,0 +1,295 @@
+//PRINCIPAL
+
+package grafica;
+
+import Fachada.Fachada;
+import javax.swing.JOptionPane;
+import logica.*;
+
+/**
+ * "2BX Entrega final programacion Kevin De la fuente, German lemos, Damian
+ * suffo
+ *
+ */
+public class Principal extends javax.swing.JFrame {
+
+    Fachada facha = Fachada.getInstancia(); //Se llama a la instancia para evitar duplicados
+
+    public Principal() {
+        initComponents();
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTabla = new javax.swing.JTable();
+        btnCrear = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        cboPrioridad = new javax.swing.JComboBox<>();
+        lblPrioridad = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnRealizados = new javax.swing.JButton();
+        btnRealizarTarea = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 255, 255));
+
+        tblTabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nombre", "Prioridad"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblTabla);
+
+        btnCrear.setText("Crear Tarea");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
+        lblNombre.setText("Nombre");
+
+        cboPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alta", "Media", "Baja" }));
+
+        lblPrioridad.setText("Prioridad");
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnRealizados.setText("Tareas Realizadas");
+        btnRealizados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizadosActionPerformed(evt);
+            }
+        });
+
+        btnRealizarTarea.setText("Realizada");
+        btnRealizarTarea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarTareaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel1.setText("2bx - Kevin de la Fuente, German Lemos, Damian Suffo");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnRealizados))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(26, 26, 26))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPrioridad)
+                                        .addGap(36, 36, 36)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cboPrioridad, 0, 76, Short.MAX_VALUE)
+                                    .addComponent(txtNombre)))
+                            .addComponent(btnRealizarTarea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblPrioridad)
+                            .addComponent(cboPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEditar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnRealizarTarea)
+                    .addComponent(btnRealizados, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        //evitar tareas vacias
+        Tarea listado = new Tarea(); //objeto para guardar la tarea
+        listado.setNombre(txtNombre.getText()); //obtenemos el nombre del textfield y lo guardamos en el array
+        if ("".equals(txtNombre.getText()) == false) {
+            listado.setPrioridad((String) cboPrioridad.getSelectedItem()); //obtenemos la prioridad del comboBox y lo guardamos en el array
+            facha.listPend.AgregarTarea(listado);//SE agrega la tarea a traves de la fachada en el array    
+
+            JOptionPane.showMessageDialog(this, "Tarea " + listado.getNombre() + " creada"); //mensaje de la creacion de tarea
+            txtNombre.setText("");//Se vacia el textfield al ingresar la tarea
+            facha.listPend.listaC(tblTabla);//Se guarda en la lista de crear o pendientes
+        } else {
+            JOptionPane.showMessageDialog(this, "No puedes crear una tarea vacia");
+        }
+    }                                        
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        int eliminarFila = tblTabla.getSelectedRow();//se la guarda la columna seleccionada en la variable eliminarFila
+        try {
+            if (eliminarFila >= -1) {//si hay una columna selecionada se elimina
+                facha.listPend.EliminarTarea(eliminarFila);
+                facha.listPend.listaC(tblTabla);
+            }
+        }//try//try
+        catch (Exception e) {//excepcion para evitar crasheo.
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una tarea para eliminar");
+            //mensaje
+        }
+    }                                           
+    //
+    //
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {                                          
+
+        Tarea listado = new Tarea();
+
+        try {
+            if ("".equals(txtNombre.getText()) == false) {
+                int seleccion = tblTabla.getSelectedRow();
+                listado.setNombre(txtNombre.getText());
+                listado.setPrioridad((String) cboPrioridad.getSelectedItem());
+                facha.listPend.editarTarea(listado, seleccion);
+                //JOptionPane.showMessageDialog(this, "Tarea " + listado.getNombre() + " creada");
+                txtNombre.setText("");
+                facha.listPend.listaC(tblTabla);
+            } else {
+                JOptionPane.showMessageDialog(this, "Debes seleccionar una tarea para editar");
+            }
+
+        } catch (Exception e) {
+        }
+    }                                         
+
+    private void btnRealizadosActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        Realizados r = new Realizados();//Objeto de realizados
+        r.setVisible(true);//se guardan en el array de realizados
+    }                                             
+
+    private void btnRealizarTareaActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        int seleccion = tblTabla.getSelectedRow();//Fila seleccionada
+        if (seleccion != -1) {//Misma forma que en editar y crear
+            facha.tareaRealizadas.TareasRealizadas(seleccion);//Se guardan en otro array distinto que se llama tareasRealizadas
+            facha.listPend.listaC(tblTabla);//se va a listaC y se quita de pendientes
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccionar tarea ya realizada");//mensaje en el caso que no haya nada seleccionado
+        }
+    }                                                
+
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Principal().setVisible(true);
+            }
+        });
+    }
+    //
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnRealizados;
+    private javax.swing.JButton btnRealizarTarea;
+    private javax.swing.JComboBox<String> cboPrioridad;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrioridad;
+    private javax.swing.JTable tblTabla;
+    private javax.swing.JTextField txtNombre;
+    // End of variables declaration                   
+}
+
+//FACHADA
+
+package Fachada;
+
+import logica.*;
+
+public class Fachada {
+
+    private static Fachada instancia;//SE instancia la fachada
+
+    public Listado listPend;//metodo para la lista pendientes
+
+    public Listado tareaRealizadas;//metodo para la lista realizadas
+
+    private Fachada() {//Fachada
+        listPend = new Listado();
+        tareaRealizadas = new Listado();
+    }
+
+    public static Fachada getInstancia() {
+        if (instancia == null) {
+            instancia = new Fachada();
+        }
+        return instancia;
+    }
+}
+
+//LISTADO
